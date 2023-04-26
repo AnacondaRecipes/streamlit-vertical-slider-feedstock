@@ -1,0 +1,49 @@
+{% set name = "streamlit-vertical-slider" %}
+{% set version = "1.0.2" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit_vertical_slider-{{ version }}.tar.gz
+  sha256: 6eaee79a397341eee6ec7862b77d27d548d2bdd126812fd811f831bd4d561f48
+
+build:
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+  # s390x is missing streamlit
+  skip: true  # [py<36 or s390x]
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python
+    - streamlit >=0.63
+
+test:
+  imports:
+    - streamlit_vertical_slider
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/sqlinsights/streamlit-vertical-slider
+  dev_url: https://github.com/sqlinsights/streamlit-vertical-slider
+  doc_url: https://github.com/sqlinsights/streamlit-vertical-slider/blob/main/README.md
+  summary: Creates a customizable vertical slider
+  description: |
+    A streamlit component to create a constinuous vertical slider with color customizations.
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+
+extra:
+  recipe-maintainers:
+    - ELundby45
