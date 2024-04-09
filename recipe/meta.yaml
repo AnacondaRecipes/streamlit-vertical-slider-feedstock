@@ -1,5 +1,5 @@
 {% set name = "streamlit-vertical-slider" %}
-{% set version = "1.0.2" %}
+{% set version = "2.5.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit_vertical_slider-{{ version }}.tar.gz
-  sha256: 6eaee79a397341eee6ec7862b77d27d548d2bdd126812fd811f831bd4d561f48
+  sha256: d6854cf81a606f5c021df2037d2c49036df2d03ce5082a5227a2acca8322ca74
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   # s390x is missing streamlit
-  skip: true  # [py<36 or s390x]
+  skip: true  # [py<38 or s390x]
 
 requirements:
   host:
@@ -23,7 +23,7 @@ requirements:
     - wheel
   run:
     - python
-    - streamlit >=0.63
+    - streamlit >=1.22.0
 
 test:
   imports:
