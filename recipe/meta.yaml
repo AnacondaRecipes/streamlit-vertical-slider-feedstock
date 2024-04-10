@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit_vertical_slider-{{ version }}.tar.gz
   sha256: d6854cf81a606f5c021df2037d2c49036df2d03ce5082a5227a2acca8322ca74
+  patches:
+    - patches/0001-remove-unused-streamlit-toggle-import.patch
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
