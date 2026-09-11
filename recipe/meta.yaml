@@ -19,8 +19,6 @@ build:
   skip: true  # [py<38 or s390x]
 
 requirements:
-  build:
-    - patch       # [not win]
   host:
     - python
     - pip
